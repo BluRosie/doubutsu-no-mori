@@ -178,5 +178,5 @@ segments:
       - [0x16E20, asm]
       - [0x16E60, asm]
   - type: bin
-    start: 0x16F40
+    start: 0x16EF0
   - [0x1000000]

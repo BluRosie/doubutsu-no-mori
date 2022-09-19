@@ -72,6 +72,9 @@ split:
 	rm -rf $(DATA_DIRS) $(ASM_DIRS) && $(PYTHON) tools/n64splat/split.py --target baserom.z64 --basedir . $(SPLAT_YAML)
 
 setup: clean submodules split
+
+split2:
+	$(PYTHON) tools/n64splat/split.py --target baserom.z64 --basedir . $(SPLAT_YAML)
 	
 $(BUILD_DIR):
 	echo $(C_FILES)
