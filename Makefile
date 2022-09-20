@@ -65,13 +65,19 @@ all: $(BUILD_DIR) $(TARGET).z64 verify
 clean:
 	rm -rf asm bin assets $(BUILD_DIR) $(TARGET).z64
 
+clean_tools:
+	cd tools/ido/ido5.3_recomp; $(MAKE) clean --jobs; cd ../../../
+
 submodules:
 	git submodule update --init --recursive
 
 split:
 	rm -rf $(DATA_DIRS) $(ASM_DIRS) && $(PYTHON) tools/n64splat/split.py --target baserom.z64 --basedir . $(SPLAT_YAML)
 
-setup: clean submodules split
+setup: clean submodules split tools
+
+tools:
+	cd tools/ido/ido5.3_recomp; $(MAKE) all --jobs; cd ../../../
 
 split2:
 	$(PYTHON) tools/n64splat/split.py --target baserom.z64 --basedir . $(SPLAT_YAML)
@@ -106,6 +112,6 @@ $(TARGET).z64: $(BUILD_DIR)/$(TARGET).bin
 verify: $(TARGET).z64
 	md5sum -c checksum.md5
 
-.PHONY: all clean default split setup
+.PHONY: all clean default split setup tools clean_tools
 
 print-% : ; $(info $* is a $(flavor $*) variable set to [$($*)]) @true
