@@ -28,7 +28,7 @@ O_FILES := $(foreach file,$(C_FILES),$(BUILD_DIR)/$(file:.c=.c.o)) \
            $(foreach file,$(DATA_FILES),$(BUILD_DIR)/$(file:.bin=.bin.o)) \
 
 SPLAT_YAML := $(TARGET).yaml
-SPLAT = $(PYTHON) tools/n64splat/split.py --target $(BASEROM) --basedir . $(SPLAT_YAML)
+SPLAT = $(PYTHON) tools/splat/split.py --target $(BASEROM) --basedir . $(SPLAT_YAML)
 
 ##################### Compiler Options #######################
 CROSS = mips-linux-gnu-
@@ -72,7 +72,7 @@ submodules:
 	git submodule update --init --recursive
 
 split:
-	rm -rf $(DATA_DIRS) $(ASM_DIRS) && $(PYTHON) tools/n64splat/split.py --target baserom.z64 --basedir . $(SPLAT_YAML)
+	rm -rf $(DATA_DIRS) $(ASM_DIRS) && $(PYTHON) tools/splat/split.py --target baserom.z64 --basedir . $(SPLAT_YAML)
 
 setup: clean submodules split tools
 
@@ -80,7 +80,7 @@ tools:
 	cd tools/ido/ido5.3_recomp; $(MAKE) all --jobs; cd ../../../
 
 split2:
-	$(PYTHON) tools/n64splat/split.py --target baserom.z64 --basedir . $(SPLAT_YAML)
+	$(PYTHON) tools/splat/split.py --target baserom.z64 --basedir . $(SPLAT_YAML)
 	
 $(BUILD_DIR):
 	echo $(C_FILES)
