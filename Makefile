@@ -72,7 +72,7 @@ submodules:
 	git submodule update --init --recursive
 
 split:
-	rm -rf $(DATA_DIRS) $(ASM_DIRS) && $(PYTHON) tools/splat/split.py --target baserom.z64 --basedir . $(SPLAT_YAML)
+	rm -rf $(DATA_DIRS) $(ASM_DIRS) && $(PYTHON) tools/splat/split.py $(SPLAT_YAML)
 
 setup: clean submodules split tools
 
@@ -80,7 +80,7 @@ tools:
 	cd tools/ido/ido5.3_recomp; $(MAKE) all --jobs; cd ../../../
 
 split2:
-	$(PYTHON) tools/splat/split.py --target baserom.z64 --basedir . $(SPLAT_YAML)
+	$(PYTHON) tools/splat/split.py $(SPLAT_YAML)
 	
 $(BUILD_DIR):
 	echo $(C_FILES)
