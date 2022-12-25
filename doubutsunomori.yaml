@@ -33,9 +33,10 @@ segments:
     start: 0x1000
     vram: 0x80025C00
     subsegments:
-      - [0x1000, asm]
-      - [0x11F0, asm]
-      - [0x14A0, asm]
+    # names all from https://docs.google.com/spreadsheets/d/17WZXsAATDgXXSBBVEOc_zT-QJDkD72vaGjZ5YyG1a_Y/edit?usp=sharing
+      - [0x1000, hasm, boot_main]
+      - [0x11F0, asm, idle]
+      - [0x14A0, asm, viconfig]
       - [0x1640, asm]
       - [0x17F0, asm]
       - [0x22A0, asm]
