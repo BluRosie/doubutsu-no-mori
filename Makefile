@@ -38,11 +38,7 @@ OBJDUMP = $(CROSS)objdump
 OBJCOPY = $(CROSS)objcopy
 CPP := cpp
 
-#CC         := $(QEMU_IRIX) -L tools/ido7.1_compiler tools/ido7.1_compiler/usr/bin/cc
-#CC_OLD     := $(QEMU_IRIX) -L tools/ido5.3_compiler tools/ido5.3_compiler/usr/bin/cc
-
-CC = tools/ido_recomp/linux/7.1/cc
-CC_OLD = tools/ido_recomp/linux/5.3/cc
+CC = tools/ido/ido5.3_recomp/cc
 
 ASFLAGS = -EB -mtune=vr4300 -march=vr4300 -Iinclude
 CFLAGS  = -G 0 -non_shared -Xfullwarn -Xcpluscomm -Iinclude -Wab,-r4300_mul -D _LANGUAGE_C
