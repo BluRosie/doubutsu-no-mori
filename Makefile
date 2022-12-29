@@ -42,7 +42,7 @@ CC = tools/ido/ido5.3_recomp/cc
 
 ASFLAGS = -EB -mtune=vr4300 -march=vr4300 -Iinclude
 CFLAGS  = -G 0 -non_shared -Xfullwarn -Xcpluscomm -Iinclude -Wab,-r4300_mul -D _LANGUAGE_C
-LDFLAGS = -T undefined_syms_auto.txt -T undefined_funcs_auto.txt -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(BUILD_DIR)/$(TARGET).map --no-check-sections
+LDFLAGS = -T undefined_funcs.txt -T undefined_syms_auto.txt -T undefined_funcs_auto.txt -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(BUILD_DIR)/$(TARGET).map --no-check-sections
 
 OPTFLAGS := -O2
 
@@ -59,7 +59,7 @@ LD_SCRIPT = $(TARGET).ld
 all: $(BUILD_DIR) $(TARGET).z64 verify
 
 clean:
-	rm -rf asm bin assets $(BUILD_DIR) $(TARGET).z64
+	rm -rf asm bin assets $(BUILD_DIR) $(TARGET).z64 undefined_syms_auto.txt undefined_funcs_auto.txt
 
 clean_tools:
 	cd tools/ido/ido5.3_recomp; $(MAKE) clean --jobs; cd ../../../
