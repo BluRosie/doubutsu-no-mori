@@ -6,7 +6,7 @@
 
 .macro glabel label
     .global \label
-    .balign 4
+    /*.balign 4*/
     \label:
 .endm
 

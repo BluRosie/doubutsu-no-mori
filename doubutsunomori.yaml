@@ -223,7 +223,25 @@ segments:
       - [0x16E20, asm, __osStrcpy]
       - [0x16E60, asm, __osMemcpy]
       - [0x16EF0, asm, rsp_boot] # rsp microcode
-      # bss stuff, we get there when we get there
+      - [0x16FC0, data]
+      - [0x185B0, rodata] #rodata
+      - [0x187F0, rodata]
+      - [0x18840, rodata]
+      - [0x19250, rodata]
+      - [0x19690, rodata]
+      - [0x196B0, rodata]
+      - [0x196C0, rodata]
+      - [0x19710, rodata]
+      - [0x199D0, rodata]
+      - [0x19AA0, rodata]
+      - [0x19AF0, rodata]
+      - [0x19B00, rodata]
+      - [0x19B30, rodata]
+      - [0x19C30, rodata]
+      - [0x19C80, rodata]
+      - [0x19C90, rodata]
+      - [0x19CF0, rodata]
+      - [0x19D40, rodata] # actually bss
   #- name: code
   #  type: compressed_overlay # overlay will sign to splat that a compressed segment starts here
   #  start: 0x675720
@@ -231,5 +249,5 @@ segments:
   #  subsegments:
   #    - [fileOffset, type, fileName]
   - type: bin
-    start: 0x16FC0
+    start: 0x1FA90
   - [0x1000000]

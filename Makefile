@@ -14,7 +14,7 @@ ROM := $(TARGET).z64
 ELF := $(BUILD_DIR)/$(TARGET).elf
 LD_SCRIPT := $(TARGET).ld
 LD_MAP := $(BUILD_DIR)/$(TARGET).map
-ASM_DIRS := asm asm/os
+ASM_DIRS := asm asm/os asm/data
 DATA_DIRS := bin assets
 SRC_DIRS := $(shell find src -type d)
 
@@ -94,6 +94,9 @@ $(BUILD_DIR)/$(TARGET).elf: $(O_FILES) $(BUILD_DIR)/$(LD_SCRIPT)
 
 $(BUILD_DIR)/%.c.o: %.c
 	$(CC) -c $(CFLAGS) $(OPTFLAGS) -o $@ $^
+
+$(BUILD_DIR)/asm/data/%.s.o: asm/data/%.s
+	iconv -f utf-8 -t euc-jp $< | $(AS) $(ASFLAGS) -o $@
 
 $(BUILD_DIR)/%.s.o: %.s
 	$(AS) $(ASFLAGS) -o $@ $<
