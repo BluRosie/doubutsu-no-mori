@@ -241,7 +241,13 @@ segments:
       - [0x19C80, rodata]
       - [0x19C90, rodata]
       - [0x19CF0, rodata]
-      - [0x19D40, rodata] # actually bss
+  - name: dmadata
+    # filesystem
+    type: code
+    start: 0x19D40
+    vram: 0x8003E940
+    subsegments:
+      - [0x19D40, data, dmadata]
   #- name: code
   #  type: compressed_overlay # overlay will sign to splat that a compressed segment starts here
   #  start: 0x675720
