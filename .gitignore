@@ -6,6 +6,7 @@ tools/n64splat
 asm/*
 bin/*
 assets/*
+tools/splat_ext/__pycache__/*
 
 # final outputs
 *.z64
@@ -15,3 +16,4 @@ assets/*
 
 undefined_funcs_auto.txt
 undefined_syms_auto.txt
+tools/source/yaz0

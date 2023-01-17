@@ -17,7 +17,7 @@ options:
   # asm_path: asm
   # src_path: src
   # build_path: build
-  # extensions_path: tools/splat_ext
+  extensions_path: tools/splat_ext
   # mips_abi_float_regs: o32
   # section_order: [".text", ".data", ".rodata", ".bss"]
   # auto_all_sections: [".data", ".rodata", ".bss"]
@@ -241,6 +241,7 @@ segments:
       - [0x19C80, rodata]
       - [0x19C90, rodata]
       - [0x19CF0, rodata]
+
   - name: dmadata
     # filesystem
     type: code
@@ -248,12 +249,26 @@ segments:
     vram: 0x8003E940
     subsegments:
       - [0x19D40, data, dmadata]
-  #- name: code
-  #  type: compressed_overlay # overlay will sign to splat that a compressed segment starts here
-  #  start: 0x675720
-  #  vram: 0x80051A80
-  #  subsegments:
-  #    - [fileOffset, type, fileName]
+
+  - name: file_00027130
+    type: bin
+    start: 0x27130
+
+  - name: file_000E4D10
+    type: bin
+    start: 0xE4D10
+
+  - name: file_0013D9A0
+    type: bin
+    start: 0x13D9A0
+
+# file to operate on is automatically determined by the name
+  - name: code
+    type: yaz0overlay
+    start: 0x675720
+    vram: 0x80051a80
+
   - type: bin
-    start: 0x1FA90
+    start: 0x6ED6C0
+
   - [0x1000000]

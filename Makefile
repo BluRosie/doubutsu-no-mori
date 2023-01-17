@@ -63,6 +63,7 @@ clean:
 
 clean_tools:
 	cd tools/ido/ido5.3_recomp; $(MAKE) clean --jobs; cd ../../../
+	cd tools/source; $(MAKE) clean --jobs; cd ../../
 
 submodules:
 	git submodule update --init --recursive
@@ -73,7 +74,9 @@ split:
 setup: clean submodules split tools
 
 tools:
-	cd tools/ido/ido5.3_recomp; $(MAKE) all --jobs; cd ../../../
+	cd tools/ido/ido5.3_recomp; $(MAKE) all; cd ../../../
+	cd tools/source; $(MAKE); cd ../../
+	
 
 split2:
 	$(PYTHON) tools/splat/split.py $(SPLAT_YAML)
