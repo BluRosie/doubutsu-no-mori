@@ -1,8 +1,8 @@
 name: Doubutsunomori (Japanese)
-sha1: e106dff7146f72415337c96deb14f630e1580efb
+sha1: 3EE1F866EB08C0CE57A30E09F0C8B0A16A760C8F
 options:
   basename: doubutsunomori
-  target_path: baserom.z64
+  target_path: baserom_decompressed.z64
   base_path: .
   compiler: IDO
   find_file_boundaries: True
@@ -262,13 +262,7 @@ segments:
     type: bin
     start: 0x13D9A0
 
-# file to operate on is automatically determined by the name
-  - name: code
-    type: yaz0overlay
-    start: 0x675720
-    vram: 0x80051a80
-
   - type: bin
-    start: 0x6ED6C0
+    start: 0x675720
 
-  - [0x1000000]
+  - [0x1914000]

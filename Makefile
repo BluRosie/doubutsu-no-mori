@@ -1,10 +1,11 @@
-BASEROM = baserom.z64
+BASEROM_FINAL = baserom.z64
+BASEROM = baserom_decompressed.z64
 TARGET = doubutsunomori
 NON_MATCHING = 0
 
 # Fail early if baserom does not exist
-ifeq ($(wildcard $(BASEROM)),)
-$(error Baserom `$(BASEROM)' not found.)
+ifeq ($(wildcard $(BASEROM_FINAL)),)
+$(error Baserom `$(BASEROM_FINAL)' not found.)
 endif
 
 PYTHON := python3.8
@@ -59,16 +60,24 @@ LD_SCRIPT = $(TARGET).ld
 all: $(BUILD_DIR) $(TARGET).z64 verify
 
 clean:
-	rm -rf asm bin assets $(BUILD_DIR) $(TARGET).z64 undefined_syms_auto.txt undefined_funcs_auto.txt
+	rm -rf asm bin assets $(BUILD_DIR) $(TARGET).z64 undefined_syms_auto.txt undefined_funcs_auto.txt $(BASEROM)
 
 clean_tools:
 	cd tools/ido/ido5.3_recomp; $(MAKE) clean --jobs; cd ../../../
 	cd tools/source; $(MAKE) clean --jobs; cd ../../
 
+$(BASEROM):$(BASEROM_FINAL)
+	@echo Decompressing $(BASEROM_FINAL)...
+	@cp $(BASEROM_FINAL) tools/zelda64_compare/dnm/dnm_jp.z64; \
+	cd tools/zelda64_compare; \
+	$(PYTHON) decompress_baserom.py dnm jp;
+	@cp tools/zelda64_compare/dnm/dnm_jp_uncompressed.z64 $(BASEROM)
+	@echo Result copied to $(BASEROM).
+
 submodules:
 	git submodule update --init --recursive
 
-split:
+split:$(BASEROM)
 	rm -rf $(DATA_DIRS) $(ASM_DIRS) && $(PYTHON) tools/splat/split.py $(SPLAT_YAML)
 
 setup: clean submodules split tools

@@ -2,6 +2,8 @@
 This is a (very) work in progress decompilation of どうぶつの森 for the N64 (the Animal Crossing game).  It aims to be a 100% byte-matching decompilation in C of the N64 Japan-exclusive Animal Crossing title.
  
 This is currently done using [Ethan's splat project](https://github.com/ethteck/splat) made for this purpose.
+
+Additionally, a decompressed ROM is built that eliminates all of the yaz compressed binaries from the games and replaces them with unpacked binaries. This repository builds and checks against the decompressed ROM primarily and will eventually be configured to build the compressed ROM byte for byte as well.
  
 ## Quick Start (Ubuntu, WSL)
 1. Install prerequisites:
@@ -24,6 +26,8 @@ cd doubutsu-no-mori
 cd tools/splat
 python3.8 -m pip install -r requirements.txt
 make --jobs
+cd ../zelda64_compare
+python3.8 -m pip install -r requirements.txt
 cd ../../
 ```
 
