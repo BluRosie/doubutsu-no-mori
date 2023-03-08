@@ -60,11 +60,12 @@ LD_SCRIPT = $(TARGET).ld
 all: $(BUILD_DIR) $(TARGET).z64 verify
 
 clean:
-	rm -rf asm bin assets $(BUILD_DIR) $(TARGET).z64 undefined_syms_auto.txt undefined_funcs_auto.txt $(BASEROM)
+	rm -rf asm bin assets $(BUILD_DIR) $(TARGET).z64 undefined_syms_auto.txt undefined_funcs_auto.txt
 
 clean_tools:
 	cd tools/ido/ido5.3_recomp; $(MAKE) clean --jobs; cd ../../../
 	cd tools/source; $(MAKE) clean --jobs; cd ../../
+	rm -rf $(BASEROM)
 
 $(BASEROM):$(BASEROM_FINAL)
 	@echo Decompressing $(BASEROM_FINAL)...
