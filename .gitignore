@@ -7,6 +7,7 @@ asm/*
 bin/*
 assets/*
 tools/splat_ext/__pycache__/*
+__pychache__/^
 
 # final outputs
 *.z64

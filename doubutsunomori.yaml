@@ -21,6 +21,7 @@ options:
   # mips_abi_float_regs: o32
   # section_order: [".text", ".data", ".rodata", ".bss"]
   # auto_all_sections: [".data", ".rodata", ".bss"]
+  migrate_rodata_to_functions: False
 segments:
   - name: header
     type: header
@@ -49,7 +50,7 @@ segments:
       - [0x5E30, asm, gfxprint]
       - [0x6BA0, asm, mtxuty-cvt]
       - [0x6D10, asm, boot_8002B910]
-      - [0x7000, asm, assert]
+      - [0x7000, c, boot/assert]
       - [0x7060, asm, boot_8002BC60]
       - [0x73A0, asm, boot_8002BFA0]
       - [0x73F0, asm, padsetup]
@@ -229,7 +230,7 @@ segments:
       - [0x18840, rodata]
       - [0x19250, rodata]
       - [0x19690, rodata]
-      - [0x196B0, rodata]
+      - [0x196B0, .rodata, boot/assert]
       - [0x196C0, rodata]
       - [0x19710, rodata]
       - [0x199D0, rodata]

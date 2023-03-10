@@ -41,8 +41,10 @@ CPP := cpp
 
 CC = tools/ido/ido5.3_recomp/cc
 
+IINC       := -Iinclude -Isrc -Iassets -Ibuild -I.
+
 ASFLAGS = -EB -mtune=vr4300 -march=vr4300 -Iinclude
-CFLAGS  = -G 0 -non_shared -Xfullwarn -Xcpluscomm -Iinclude -Wab,-r4300_mul -D _LANGUAGE_C
+CFLAGS  = -G 0 -non_shared -fullwarn -verbose -Xcpluscomm $(IINC) -nostdinc -Wab,-r4300_mul -woff 624,649,838,712,516
 LDFLAGS = -T undefined_funcs.txt -T undefined_syms_auto.txt -T undefined_funcs_auto.txt -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(BUILD_DIR)/$(TARGET).map --no-check-sections
 
 OPTFLAGS := -O2
@@ -51,7 +53,12 @@ OPTFLAGS := -O2
 
 $(foreach dir,$(SRC_DIRS) $(ASM_DIRS) $(DATA_DIRS) $(COMPRESSED_DIRS) $(MAP_DIRS) $(BGM_DIRS),$(shell mkdir -p build/$(dir)))
 
+
+################# Specific Compiler Flags ####################
+
 build/src/os/O1/%.o: OPTFLAGS := -O1
+
+
 
 default: all
 
