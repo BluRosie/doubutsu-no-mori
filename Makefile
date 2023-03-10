@@ -59,6 +59,8 @@ $(foreach dir,$(SRC_DIRS) $(ASM_DIRS) $(DATA_DIRS) $(COMPRESSED_DIRS) $(MAP_DIRS
 
 build/src/os/O1/%.o: OPTFLAGS := -O1
 
+build/src/boot/%.o: OPTFLAGS := -G 3
+
 
 
 default: all
