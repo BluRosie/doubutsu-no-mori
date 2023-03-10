@@ -4,3 +4,6 @@
 [submodule "tools/zelda64_compare"]
 	path = tools/zelda64_compare
 	url = https://github.com/Decompollaborate/zelda64_compare.git
+[submodule "tools/ido"]
+	path = tools/ido
+	url = https://github.com/decompals/ido-static-recomp.git

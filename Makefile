@@ -39,7 +39,8 @@ OBJDUMP = $(CROSS)objdump
 OBJCOPY = $(CROSS)objcopy
 CPP := cpp
 
-CC = tools/ido/ido5.3_recomp/cc
+CC = tools/ido/build/7.1/out/cc
+CC_OLD = tools/ido/build/5.3/out/cc
 
 IINC       := -Iinclude -Isrc -Iassets -Ibuild -I.
 
@@ -70,8 +71,8 @@ clean:
 	rm -rf asm bin assets $(BUILD_DIR) $(TARGET).z64 undefined_syms_auto.txt undefined_funcs_auto.txt
 
 clean_tools:
-	cd tools/ido/ido5.3_recomp; $(MAKE) clean --jobs; cd ../../../
-	cd tools/source; $(MAKE) clean --jobs; cd ../../
+	rm -rf tools/ido/build
+	cd tools/source; $(MAKE) clean
 	rm -rf $(BASEROM)
 
 $(BASEROM):$(BASEROM_FINAL)
@@ -91,8 +92,10 @@ split:$(BASEROM)
 setup: clean submodules split tools
 
 tools:
-	cd tools/ido/ido5.3_recomp; $(MAKE) all; cd ../../../
-	cd tools/source; $(MAKE); cd ../../
+	cd tools/ido; $(MAKE) setup
+	cd tools/ido; $(MAKE) VERSION=5.3
+	cd tools/ido; $(MAKE) VERSION=7.1
+	cd tools/source; $(MAKE)
 	
 
 split2:
